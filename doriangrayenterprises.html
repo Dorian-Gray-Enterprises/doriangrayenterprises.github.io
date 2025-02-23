@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dorian Gray Enterprises</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1c1c1c;
+      color: #f0f0f0;
+    }
+
+    header {
+      background-color: #2b2b2b;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #444;
+    }
+
+    .content {
+      padding: 50px 5%;
+      background: linear-gradient(145deg, #2a2a2a, #3c3c3c);
+      min-height: 80vh;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 16px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .info-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .info-section div {
+      background-color: #2b2b2b;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: slideIn 1s ease-in-out;
+    }
+
+    .dropdown {
+      margin-top: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+
+    .dropdown-arrow {
+      border: solid #f0f0f0;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 5px;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-arrow {
+      transform: rotate(-135deg);
+    }
+
+    .dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+      background-color: transparent;
+      padding: 0;
+      max-width: 640px;
+      margin: 0 auto;
+      box-shadow: none;
+    }
+
+    .dropdown-content.active {
+      max-height: 1500px;
+      transition: max-height 0.5s ease-in;
+    }
+
+    .dropdown-content iframe {
+      width: 100%;
+      height: 554px;
+      border: none;
+      background-color: transparent;
+    }
+
+    #preScreenForm iframe {
+      height: 800px;
+    }
+
+    .tenantcloud-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tenantcloud-button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      background-color: #2b2b2b;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .benefit-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .benefit-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .benefit-card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .benefit-card p {
+      margin: 10px 0 0;
+      color: #ccc;
+    }
+  </style>
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+    function toggleDropdown(dropdownId, arrowId) {
+      const dropdown = document.getElementById(dropdownId);
+      const arrow = document.getElementById(arrowId);
+      dropdown.classList.toggle('active');
+      arrow.parentElement.classList.toggle('active');
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>Dorian Gray Enterprises</h1>
+    <nav>
+      <a onclick="showSection('home')">Home</a>
+      <a onclick="showSection('residents')">Residents</a>
+      <a onclick="showSection('listings')">Listings</a>
+      <a onclick="showSection('contact')">Contact</a>
+    </nav>
+  </header>
+  <div class="content">
+    <div id="home" class="section active">
+      <div class="hero">
+        <img src="https://via.placeholder.com/1200x400?text=Property+Management+Excellence" alt="Property Management">
+      </div>
+      <div class="info-section">
+        <div>
+          <h2>Why Choose Us?</h2>
+          <p>We redefine property management by putting people first. Whether you're a tenant or a property owner, we
+            offer unparalleled service, transparency, and support. Here's what sets us apart:</p>
+
+          <div class="benefit-card">
+            <img src="https://via.placeholder.com/100x100?text=✅" alt="Residents">
+            <div>
+              <h3>For Residents</h3>
+              <p><strong>Flexible Rent Payment Options:</strong> We make paying rent easy and stress-free. Use our
+                property management software for seamless online payments, or rely on backup options like CashApp and
+                Chime if you encounter any issues. Your convenience is our priority.</p>
+              <p><strong>Respect and Compassion:</strong> Our residents are our clients, and we treat you with the
+                respect and care you deserve. We listen to your needs and work tirelessly to ensure your living
+                experience is comfortable and hassle-free.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <img src="https://via.placeholder.com/100x100?text=💼" alt="Property Owners">
+            <div>
+              <h3>For Property Owners</h3>
+              <p><strong>Profit-Sharing Model:</strong> Unlike traditional property management companies, we align our
+                success with yours. Our unique profit-sharing model is based on a percentage of <strong>net
+                  income</strong>, not gross rents. This means no hidden fees or markups—just a partnership focused on
+                maximizing your returns.</p>
+              <p><strong>Real-Time Financial Transparency:</strong> Stay in control with our property owner portal.
+                Access detailed financials, transaction histories, and performance metrics for your properties anytime,
+                anywhere. Full transparency means you’re always in the loop.</p>
+            </div>
+          </div>
+
+          <div class="benefit-card">
+            <img src="https://via.placeholder.com/100x100?text=🤝" alt="Both">
+            <div>
+              <h3>For Both Residents and Property Owners</h3>
+              <p><strong>Extended Availability:</strong> We understand that life doesn’t stop at 5 PM, and neither do
+                we. While we can’t guarantee 24/7 responsiveness, we make ourselves available outside of traditional
+                working hours with no set limit on when you can reach us. Whether it’s a maintenance issue, a question,
+                or a concern, we’re here to help when you need us most.</p>
+              <p><strong>Proactive Maintenance for Peace of Mind:</strong> We believe in preventing problems before they
+                start. Our proactive maintenance strategy means fewer headaches and surprises for residents and property
+                owners. It’s a win-win for everyone.</p>
+              <p><strong>Commitment to Excellence:</strong> From responsive communication to transparent financials,
+                we’re dedicated to delivering exceptional service at every step. Your satisfaction is our success.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="residents" class="section">
+      <h2>Resident Portal</h2>
+      <a href="https://app.tenantcloud.com/login" target="_blank" class="tenantcloud-button">TenantCloud Portal</a>
+      <div class="dropdown" onclick="toggleDropdown('cashtagForm', 'cashtagArrow')">
+        <span>Register your Cashtag below so we know it's you making the payments</span>
+        <i id="cashtagArrow" class="dropdown-arrow"></i>
+      </div>
+      <div id="cashtagForm" class="dropdown-content">
+        <div class="form-container">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSddvkgIehF2HFQnotRdLumA_q8sMZcCwiK7xKXLUKQ7kseebQ/viewform??embedded=true&usp=pp_url&entry.700784361=(%23%23%23)+%23%23%23-%23%23%23%23&entry.314865490=$"
+            width="640" height="554" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+      </div>
+    </div>
+    <div id="listings" class="section">
+      <h2>Listings</h2>
+      <a href="https://doriangrayenterprises.tenantcloud.com/" target="_blank" class="tenantcloud-button">View Available
+        Properties and Apply Here</a>
+      <div class="dropdown" onclick="toggleDropdown('preScreenForm', 'preScreenArrow')">
+        <span>Resident Pre-Screen Application</span>
+        <i id="preScreenArrow" class="dropdown-arrow"></i>
+      </div>
+      <div id="preScreenForm" class="dropdown-content">
+        <div class="form-container">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLScoPJNtZK9gyEbAneauiwhkfKmUnNsXUCsVht3Q8kNs9wycbg/viewform?embedded=true&usp=pp_url&entry.965861354=(%23%23%23)+%23%23%23-%23%23%23%23"
+            width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+      </div>
+    </div>
+    <div id="contact" class="section">
+      <h2>Contact Us</h2>
+      <p>Have questions or need assistance? Reach out to us anytime!</p>
+      <p>Email: manager@doriangrayenterprises.com</p>
+      <p>Phone: 937-203-0868</p>
+    </div>
+  </div>
+  <footer>
+    <p>Email: manager@doriangrayenterprises.com | Phone: 937-203-0868</p>
+    <p>&copy; 2025 Dorian Gray Enterprises. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
